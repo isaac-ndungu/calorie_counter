@@ -1,10 +1,17 @@
 from django.shortcuts import redirect, render
 from .models import Meal
 from .forms import MealForm
+from django.utils import timezone
+from django.db.models import Sum
 
 def index(request):
     meals = Meal.objects.all()
-    context = {'meals': meals}
+    
+    today = timezone.now().date()
+    total_calories = meals.aggregate(total=Sum('calories'))['total'] or 0
+
+
+    context = {'meals': meals, 'total_calories': total_calories}
     return render(request, 'index.html', context)
 
 def insert_meal(request):
@@ -36,4 +43,9 @@ def delete_meal(request, id):
     meal = Meal.objects.get(id=id)
     meal.delete()
     
+    return redirect('index')
+
+def reset_calories(request):
+    today = timezone.now().date()
+    Meal.objects.filter(added_time__date=today).delete()
     return redirect('index')
