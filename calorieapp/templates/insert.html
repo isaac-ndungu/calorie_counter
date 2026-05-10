@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Meal{% endblock %}
+
+{% block content %}
+
+    <h1>Add Meal</h1>
+
+    <form method="POST">
+
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" placeholder="Enter meal name.." required></td>
+            </tr>
+            <tr>
+                <td>Calories</td>
+                <td><input type="number" name="calories" placeholder="Enter calories.." required></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Save Meal"></td>
+                <td>
+                    {% if message %}
+                        <b>{{ message }}</b>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        <a href="{% url 'index' %}">Home</a>
+
+
+    </form>
+{% endblock %}

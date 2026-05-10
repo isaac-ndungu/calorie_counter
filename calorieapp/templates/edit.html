@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Meal{% endblock %}
+
+{% block content %}
+
+    <h2> Edit Meal</h2>
+
+    <form method="POST" action="/update/{{ meal.id }}/">
+        {% csrf_token %}    
+        <table>
+            <tr>
+                <td> Meal id</td>
+                <td>{{ meal.id }}</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" value="{{ meal.name }}" required></td>
+            </tr>
+            <tr>
+                <td>Calories</td>
+                <td><input type="number" name="calories" value="{{ meal.calories }}" required></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" value="Update Meal"></td>
+                <td>
+                    {% if message %}
+                        <b>{{ message }}</b>
+                    {% endif %}
+                </td>
+        </table>
+        <a href="{% url 'index' %}">Home</a>
+    </form>
+{% endblock %}
