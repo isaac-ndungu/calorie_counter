@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Meal
 from .forms import MealForm
 
@@ -35,5 +35,5 @@ def update_meal(request, id):
 def delete_meal(request, id):
     meal = Meal.objects.get(id=id)
     meal.delete()
-    meals = Meal.objects.all()
-    return render(request, 'index.html', {'meals': meals})
+    
+    return redirect('index')
