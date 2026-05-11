@@ -1,6 +1,6 @@
 # Calorie Counter
 
-A simple, clean web app for tracking daily meal calories — built with Django and styled with Tailwind CSS. Designed for everyday use, it lets you log meals throughout the day, monitor your running calorie total, and reset when the day is done. 
+A simple, clean web app for tracking daily meal calories, built with Django and styled with Tailwind CSS. Designed for everyday use, it lets you log meals throughout the day, monitor your running calorie total, and reset when the day is done. 
 
 
 ## Features
